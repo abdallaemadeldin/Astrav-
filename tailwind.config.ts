@@ -83,8 +83,28 @@ const config: Config = {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out',
       },
+      animationDelay: {
+        '0': '0ms',
+        '200': '200ms',
+        '400': '400ms',
+        '600': '600ms',
+        '800': '800ms',
+        '1000': '1000ms',
+      },
     },
   },
-  plugins: [require('tailwindcss-animate')],
+  plugins: [
+    require('tailwindcss-animate'),
+    function ({ matchUtilities, theme }: any) {
+      matchUtilities(
+        {
+          'animation-delay': (value: string) => ({
+            '--tw-animation-delay': value,
+          }),
+        },
+        { values: theme('animationDelay') }
+      )
+    }
+  ],
 };
 export default config;

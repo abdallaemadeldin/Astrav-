@@ -79,22 +79,10 @@
   body {
     @apply bg-background text-foreground;
   }
-
-  /* Animation sequence variables */
-  :root {
-    --slide-duration: 800ms;
-    --slide-delay-1: 0ms;
-    --slide-delay-2: 200ms;
-    --slide-delay-3: 400ms;
-    --slide-delay-4: 600ms;
-    --slide-delay-5: 800ms;
-    --slide-delay-6: 1000ms;
-  }
-
   .slide-up {
     opacity: 0;
-    animation: slideUp var(--slide-duration) cubic-bezier(0.16, 1, 0.3, 1) forwards;
-    animation-delay: var(--animation-delay, 0ms);
+    animation: slideUp 800ms cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    animation-delay: var(--tw-animation-delay, 0ms);
   }
 
   @keyframes slideUp {

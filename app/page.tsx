@@ -10,15 +10,9 @@ import { formatCurrency } from "@/lib/utils";
 import { Product } from "@/lib/types";
 
 export default function Home() {
-  const { addToCart, ensureAnonymousAuth } = useCart();
+  const { addToCart } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    // ensureAnonymousAuth();
-    console.log("xxxx");
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   useEffect(() => {
     async function fetchProducts() {
@@ -58,32 +52,20 @@ export default function Home() {
 
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-16">
         <div className="text-center mb-16">
-          <h1
-            className="text-6xl font-bold mb-3 tracking-tight slide-up"
-            style={{ "--animation-delay": "var(--slide-delay-1)" }}
-          >
+          <h1 className="text-6xl font-bold mb-3 tracking-tight slide-up animation-delay-0">
             Astravé
           </h1>
-          <p
-            className="text-xl font-medium text-muted-foreground mb-6 slide-up"
-            style={{ "--animation-delay": "var(--slide-delay-2)" }}
-          >
+          <p className="text-xl font-medium text-muted-foreground mb-6 slide-up animation-delay-200">
             Ignite Elegance
           </p>
-          <p
-            className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed slide-up"
-            style={{ "--animation-delay": "var(--slide-delay-3)" }}
-          >
+          <p className="text-lg text-muted-foreground mb-8 max-w-2xl mx-auto leading-relaxed slide-up animation-delay-400">
             Discover our collection of artisanal luxury candles, meticulously
             crafted with the finest natural ingredients and rare essential oils.
             Each candle doubles as a nourishing body lotion, made with 100%
             natural ingredients that melt into a luxurious, skin-safe
             moisturizer.
           </p>
-          <div
-            className="flex justify-center gap-12 text-sm uppercase tracking-wider font-medium text-muted-foreground slide-up"
-            style={{ "--animation-delay": "var(--slide-delay-4)" }}
-          >
+          <div className="flex justify-center gap-12 text-sm uppercase tracking-wider font-medium text-muted-foreground slide-up animation-delay-600">
             <div className="flex items-center gap-2">
               <Leaf className="w-5 h-5" />
               <span>100% Natural</span>
@@ -97,20 +79,14 @@ export default function Home() {
               <span>Body Lotion</span>
             </div>
           </div>
-          <p
-            className="text-sm text-muted-foreground mt-8 max-w-xl mx-auto slide-up"
-            style={{ "--animation-delay": "var(--slide-delay-5)" }}
-          >
+          <p className="text-sm text-muted-foreground mt-8 max-w-xl mx-auto slide-up animation-delay-800">
             Our innovative formula transforms from a warm, aromatic candle into
             a silky-smooth body lotion, perfect for an indulgent self-care
             ritual.
           </p>
         </div>
 
-        <div
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 slide-up"
-          style={{ "--animation-delay": "var(--slide-delay-6)" }}
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 slide-up animation-delay-1000">
           {loading
             ? // Loading placeholders
               Array.from({ length: 4 }).map((_, index) => (
