@@ -1,3 +1,4 @@
+import { CartProvider } from "@/context/cart-context";
 import "./globals.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
@@ -22,7 +23,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={poppins.className}>
-        <StrictMode>{children}</StrictMode>
+        <StrictMode>
+          <CartProvider>{children}</CartProvider>
+        </StrictMode>
       </body>
     </html>
   );

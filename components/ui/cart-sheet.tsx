@@ -9,9 +9,9 @@ import {
 } from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Minus, Plus, Trash2 } from "lucide-react";
-import { useCart } from "@/hooks/use-cart";
 import { formatCurrency } from "@/lib/utils";
 import { Separator } from "./separator";
+import { useCart } from "@/context/cart-context";
 
 export function CartSheet() {
   const { cart, updateQuantity, removeFromCart } = useCart();

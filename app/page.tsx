@@ -1,13 +1,13 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { useCart } from "@/hooks/use-cart";
 import { CartSheet } from "@/components/ui/cart-sheet";
 import { Button } from "@/components/ui/button";
 import { Leaf, Shield, Sparkles } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { formatCurrency } from "@/lib/utils";
 import { Product } from "@/lib/types";
+import { useCart } from "@/context/cart-context";
 
 export default function Home() {
   const { addToCart } = useCart();
