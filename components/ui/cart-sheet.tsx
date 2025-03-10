@@ -1,6 +1,12 @@
-'use client';
+"use client";
 
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 import { Button } from "@/components/ui/button";
 import { ShoppingCart, Minus, Plus, Trash2 } from "lucide-react";
 import { useCart } from "@/hooks/use-cart";
@@ -13,11 +19,7 @@ export function CartSheet() {
   return (
     <Sheet>
       <SheetTrigger asChild>
-        <Button 
-          variant="outline" 
-          size="icon"
-          className="relative"
-        >
+        <Button variant="outline" size="icon" className="relative">
           <ShoppingCart className="h-5 w-5" />
           {cart.itemCount > 0 && (
             <span className="absolute -top-2 -right-2 bg-black text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">
@@ -32,7 +34,9 @@ export function CartSheet() {
         </SheetHeader>
         <div className="mt-8">
           {cart.items.length === 0 ? (
-            <p className="text-center text-muted-foreground">Your cart is empty</p>
+            <p className="text-center text-muted-foreground">
+              Your cart is empty
+            </p>
           ) : (
             <>
               <div className="space-y-4">
@@ -55,7 +59,9 @@ export function CartSheet() {
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity - 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity - 1)
+                          }
                         >
                           <Minus className="h-4 w-4" />
                         </Button>
@@ -64,7 +70,9 @@ export function CartSheet() {
                           variant="outline"
                           size="icon"
                           className="h-8 w-8"
-                          onClick={() => updateQuantity(item.id, item.quantity + 1)}
+                          onClick={() =>
+                            updateQuantity(item.id, item.quantity + 1)
+                          }
                         >
                           <Plus className="h-4 w-4" />
                         </Button>
@@ -85,7 +93,9 @@ export function CartSheet() {
               <div className="space-y-4">
                 <div className="flex items-center justify-between">
                   <span className="font-medium">Total</span>
-                  <span className="font-medium">{formatCurrency(cart.total)}</span>
+                  <span className="font-medium">
+                    {formatCurrency(cart.total)}
+                  </span>
                 </div>
                 <Button className="w-full bg-[#ddcfc6] hover:bg-[#d0bfb3] text-black">
                   Checkout

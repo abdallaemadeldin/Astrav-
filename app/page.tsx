@@ -10,7 +10,7 @@ import { formatCurrency } from "@/lib/utils";
 import { Product } from "@/lib/types";
 
 export default function Home() {
-  const { addToCart, ensureAnonymousAuth } = useCart();
+  const { addToCart } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -30,7 +30,6 @@ export default function Home() {
         setLoading(false);
       }
     }
-    ensureAnonymousAuth();
     fetchProducts();
   }, []);
 
