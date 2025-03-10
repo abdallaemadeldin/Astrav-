@@ -50,7 +50,6 @@ export default function Home() {
               alt="Astravé"
               className="h-12 w-auto"
               loading="eager"
-              priority="true"
             />
           </div>
           <CartSheet />
