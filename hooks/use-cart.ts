@@ -62,9 +62,12 @@ export function useCart() {
 
   const ensureAnonymousAuth = useCallback(async () => {
     const { data: { session } } = await supabase.auth.getSession();
+    alert(session);
     if (!session) {
       await supabase.auth.signInAnonymously().then(() => {
         fetchCart();
+      }).catch(error => {
+        console.log({ error })
       });
     }
   }, [fetchCart]);
