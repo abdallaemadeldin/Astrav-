@@ -166,8 +166,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
           quantity: 1,
         });
       }
-
-      fetchCart();
     } catch (error) {
       console.error("Error adding to cart:", error);
       fetchCart();
@@ -196,8 +194,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
           .delete()
           .eq("cart_id", cartData.id)
           .eq("product_id", productId);
-
-        fetchCart();
       }
     } catch (error) {
       console.error("Error removing from cart:", error);
@@ -255,8 +251,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
             });
           }
         }
-
-        fetchCart();
       }
     } catch (error) {
       console.error("Error updating quantity:", error);
@@ -281,8 +275,6 @@ export function CartProvider({ children }: { children: ReactNode }) {
 
       if (cartData) {
         await supabase.from("cart_items").delete().eq("cart_id", cartData.id);
-
-        fetchCart();
       }
     } catch (error) {
       console.error("Error clearing cart:", error);

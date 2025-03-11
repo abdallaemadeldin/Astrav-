@@ -97,7 +97,21 @@ export function CartSheet() {
                     {formatCurrency(cart.total)}
                   </span>
                 </div>
-                <Button className="w-full bg-[#ddcfc6] hover:bg-[#d0bfb3] text-black">
+                <Button
+                  className="w-full bg-[#ddcfc6] hover:bg-[#d0bfb3] text-black"
+                  onClick={() => {
+                    const orderDetails = cart.items
+                      .map((e) => `- ${e.name} - Quantity: ${e.quantity}`)
+                      .join("%0A"); // Ensures each item appears on a new line
+
+                    // Ensure the message is fully constructed before calling window.open
+                    const message = encodeURIComponent(
+                      `Hello, I would like to place an order.\nHere are my selected items:\n*Order Details:*\n${orderDetails}\n\n*Total Price:* ${cart.total} EGP\n*Delivery Address:* [Your Address]\n*Contact Number:* [Your Phone Number]\nThank you!`
+                    );
+
+                    window.open(`https://wa.me/+201155536658?text=${message}`);
+                  }}
+                >
                   Checkout
                 </Button>
               </div>

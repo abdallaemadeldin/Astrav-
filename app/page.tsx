@@ -3,14 +3,14 @@
 import { useEffect, useState } from "react";
 import { CartSheet } from "@/components/ui/cart-sheet";
 import { Button } from "@/components/ui/button";
-import { Leaf, Shield, Sparkles } from "lucide-react";
+import { Leaf, Shield, Sparkles, Plus, Minus, Trash2 } from "lucide-react";
 import { supabase } from "@/lib/supabase";
 import { formatCurrency } from "@/lib/utils";
 import { Product } from "@/lib/types";
 import { useCart } from "@/context/cart-context";
 
 export default function Home() {
-  const { addToCart } = useCart();
+  const { cart, addToCart, updateQuantity, removeFromCart } = useCart();
   const [products, setProducts] = useState<Product[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -133,18 +133,70 @@ export default function Home() {
                           className={`text-sm ${
                             product.stock > 5
                               ? "text-green-600"
+                              : product.stock === 0
+                              ? "text-red-600"
                               : "text-orange-600"
                           }`}
                         >
-                          {product.stock > 5 ? "In Stock" : "Low Stock"}
+                          {product.stock > 5
+                            ? "In Stock"
+                            : product.stock === 0
+                            ? "Out of stock"
+                            : "Low Stock"}
                         </span>
                       </div>
-                      <Button
-                        className="w-full mt-6 bg-[#ddcfc6] hover:bg-[#d0bfb3] text-black font-medium tracking-wide transition-all duration-300 hover:shadow-md"
-                        onClick={() => addToCart(product)}
-                      >
-                        Add to Cart
-                      </Button>
+                      {cart.items.find((item) => item.id === product.id) ? (
+                        <div className="flex items-center justify-between gap-2 mt-6">
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-10 w-10"
+                            onClick={() => {
+                              const currentQuantity =
+                                cart.items.find(
+                                  (item) => item.id === product.id
+                                )?.quantity || 0;
+                              if (currentQuantity === 1) {
+                                removeFromCart(product.id);
+                              } else {
+                                updateQuantity(product.id, currentQuantity - 1);
+                              }
+                            }}
+                          >
+                            {cart.items.find((item) => item.id === product.id)
+                              ?.quantity === 1 ? (
+                              <Trash2 className="h-4 w-4" />
+                            ) : (
+                              <Minus className="h-4 w-4" />
+                            )}
+                          </Button>
+                          <span className="flex-1 text-center font-medium">
+                            {cart.items.find((item) => item.id === product.id)
+                              ?.quantity || 0}
+                          </span>
+                          <Button
+                            variant="outline"
+                            size="icon"
+                            className="h-10 w-10"
+                            onClick={() => {
+                              const currentQuantity =
+                                cart.items.find(
+                                  (item) => item.id === product.id
+                                )?.quantity || 0;
+                              updateQuantity(product.id, currentQuantity + 1);
+                            }}
+                          >
+                            <Plus className="h-4 w-4" />
+                          </Button>
+                        </div>
+                      ) : (
+                        <Button
+                          className="w-full mt-6 bg-[#ddcfc6] hover:bg-[#d0bfb3] text-black font-medium tracking-wide transition-all duration-300 hover:shadow-md"
+                          onClick={() => addToCart(product)}
+                        >
+                          Add to Cart
+                        </Button>
+                      )}
                     </div>
                   </div>
                 </div>
